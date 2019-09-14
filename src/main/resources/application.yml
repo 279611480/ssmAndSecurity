@@ -1,0 +1,82 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/my_springboot_ssm?serverTimezone=UTC
+    username: root
+    password: 1234
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+    # druid连接池
+    druid:
+      initial-size: 1 #初始化连接数
+      min-idle: 1 #最小空闲连接
+      max-active: 20 #最大活动连接
+      test-on-borrow: true #获取连接时测试是否可用
+      stat-view-servlet.allow: true #监控页面启动
+  #热部署：修改后台文件保存后自动重启
+  devtools:
+    restart:
+      enabled: true
+      spring-boot-devtools: src/main/java  #监听目录
+  #thymeleag   配置视图解析器
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    model: HTML5
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    servlet:
+      content-type: text/html
+
+# 日志文档处，打印Sql语句
+logging:
+  config: classpath:logback.xml
+  level:
+    org.yun.ssm.mapper: DEBUG
+
+  # 应该以什么样的路径来访问静态资源,这表示只有静态资源的访问路径为/static/ 时才会处理(如http://localhost:8080/static/css/base.css)
+  mvc:
+    static-path-pattern: /static/**
+  #用于告诉Spring Boot应该在何处查找静态资源文件,查找文件时会依赖于配置的先后顺序依次进行
+  #spring.resources.static-locations=classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+
+
+
+#    例子
+#    # 配置Spring Boot，所有依赖此组件的其他组件，都使用相同的配置。
+#  spring:
+#    mvc.view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#
+#    servlet.multpart:
+#      #可以不写单位，默认是MB，建议写单位
+#      #KB  MB  GB TB
+#      maxFileSize:10MB
+#
+#    # 数据源的配置
+#    datasource:
+#      driverClassName: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://127.0.0.1:3306/oa?useSSL=false
+#      username: root
+#      password: 1234
+#
+#    # JPA配置
+#    jpa:
+#      #database-platform: MySQL57
+#      #showSql: true
+#      hibernate:
+#        # 属性的名称为ddlAuto，可以直接使用ddlAuto名称，也可以把字母全改为小写，使用减号隔开
+#        ddl-auto: update
+#      properties:
+#        # Hibernate的方言参考官方的hibernate.cfg.xml文件中的配置
+#        #hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
+#        hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+#      # 在一个请求里面打开一个EntityManager，这样可以让实体对象传递给JSP以后，还能够使用懒加载
+#      # 如果EntityManager被关闭，页面上肯定不能使用懒加载从数据库加载关联数据
+#      openInView: true
+#    messages:
+#      basename:org.yun.security.messages     # 如果有些组件，不使用相同的配置，那么就自己增加application.yaml文件。
