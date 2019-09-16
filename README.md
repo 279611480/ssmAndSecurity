@@ -11,6 +11,127 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 2019_09_14start(01)：  初始化，拉取的项目代码，可看此处  
 
+2019_09_14security(01): 整合SpringSecurity现在只到----->配置拦截策略
+
+# Sql：
+
+## CREATE TABLE `security_user` (
+ 
+ `id` varchar(250) NOT NULL COMMENT 'id',
+ 
+ `username` varchar(60) DEFAULT NULL COMMENT '用户名',
+ 
+ `password` varchar(60) DEFAULT NULL COMMENT '密码',
+ 
+ `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+ 
+ `updated_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+ 
+ PRIMARY KEY (`id`),
+ 
+ UNIQUE KEY `UNIQUE` (`username`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='整合SpringSecurity的用户表'
+
+
+
+## CREATE TABLE `security_role` (
+
+  `id` varchar(255) NOT NULL COMMENT 'id',
+  
+  `name` varchar(60) DEFAULT NULL COMMENT '权限名',
+  
+  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  
+  PRIMARY KEY (`id`)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='整合SpringSecurity所需的 角色表'
+
+
+## CREATE TABLE `security_user_role` (
+
+  `id` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'id',
+  
+  `user_id` varchar(250) CHARACTER SET utf8 DEFAULT NULL COMMENT '用户表id',
+  
+  `role_id` varchar(250) CHARACTER SET utf8 DEFAULT NULL COMMENT '权限表id',
+  
+  `created_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  
+  PRIMARY KEY (`id`),
+  
+  KEY `user_id` (`user_id`),
+  
+  KEY `role_id` (`role_id`),
+  
+  CONSTRAINT `security_user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `security_user` (`id`),
+  
+  CONSTRAINT `security_user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `security_role` (`id`)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='整合Security的 用户权限表-->是用户表与权限表的中间表（因为两表是多对多的关系）'
+
+
+
+
+## CREATE TABLE `security_permission` (
+
+  `id` varchar(255) NOT NULL COMMENT 'id',
+  
+  `name` varchar(30) DEFAULT NULL COMMENT '权限名',
+  
+  `description` varchar(100) DEFAULT NULL COMMENT '权限说明',
+  
+  `url` varchar(100) DEFAULT NULL COMMENT '权限允许的URL',
+  
+  `pid` varchar(255) DEFAULT NULL,
+  
+  PRIMARY KEY (`id`)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表'
+
+
+
+## CREATE TABLE `security_permission_role` (
+
+  `id` varchar(255) NOT NULL,
+  
+  `role_id` varchar(255) DEFAULT NULL,
+  
+  `permission_id` varchar(255) DEFAULT NULL,
+  
+  PRIMARY KEY (`id`),
+  
+  KEY `role2` (`role_id`),
+  
+  KEY `permission` (`permission_id`),
+  
+  CONSTRAINT `permission` FOREIGN KEY (`permission_id`) REFERENCES `security_permission` (`id`),
+  
+  CONSTRAINT `role2` FOREIGN KEY (`role_id`) REFERENCES `security_role` (`id`)
+  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限角色表'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
