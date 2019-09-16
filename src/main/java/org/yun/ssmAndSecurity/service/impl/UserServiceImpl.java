@@ -19,7 +19,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired(required=true)
-    @Qualifier("userMapper")
     UserMapper userMapper;
     //此处不是  修改  插入 删除  所以无需加上  事物注解    @Transactional
     @Override
