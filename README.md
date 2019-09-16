@@ -5,17 +5,17 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
  
 所以这次，相当于代码，返回到，整合了SSM和Log的配置的代码，重新开始整合SprigSecurity（但是，这次是与数据库打交道，实现权限控制）
 
-注意：每个分支是对应的代码，主干则是对应的每部分代码，请，自行切换分支
+== 注意：每个分支是对应的代码，主干则是对应的每部分代码，请，自行切换分支 ==
 
 分支：
 
-2019_09_14start(01)：  初始化，拉取的项目代码，可看此处  
+# 2019_09_14start(01)：  初始化，拉取的项目代码，可看此处  
 
-2019_09_14security(01): 整合SpringSecurity现在只到----->配置拦截策略
+# 2019_09_14security(01): 整合SpringSecurity现在只到----->配置拦截策略
 
-# Sql：
+## Sql：
 
-## 结果
+### 结果
 运行项目，输入http://localhost:8080/security/login跳转到的页面就是我们刚才写好的页面了，随便输入账号密码点击登录的报错页面也是刚刚添加的error页面。
 
 因为控制层，已经有了方法，会跳转到哪里，至于为什么一直会跳转到error页面，这里还未做  任何  认证以及鉴证的处理。
@@ -35,7 +35,7 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190917002624670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
 
 
-## CREATE TABLE `security_user` (
+### CREATE TABLE `security_user` (
  
  `id` varchar(250) NOT NULL COMMENT 'id',
  
@@ -55,7 +55,7 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 ![数据](https://img-blog.csdnimg.cn/20190917001127291.png)
 
-## CREATE TABLE `security_role` (
+### CREATE TABLE `security_role` (
 
   `id` varchar(255) NOT NULL COMMENT 'id',
   
@@ -69,7 +69,7 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 ![角色数据](https://img-blog.csdnimg.cn/20190917001232813.png)
 
-## CREATE TABLE `security_user_role` (
+### CREATE TABLE `security_user_role` (
 
   `id` varchar(250) CHARACTER SET utf8 NOT NULL COMMENT 'id',
   
@@ -93,7 +93,7 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 ![角色用户中间表数据](https://img-blog.csdnimg.cn/20190917002001410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
 
-## CREATE TABLE `security_permission` (
+### CREATE TABLE `security_permission` (
 
   `id` varchar(255) NOT NULL COMMENT 'id',
   
@@ -111,7 +111,7 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 ![权限表数据](https://img-blog.csdnimg.cn/20190917002104533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
 
-## CREATE TABLE `security_permission_role` (
+### CREATE TABLE `security_permission_role` (
 
   `id` varchar(255) NOT NULL,
   
