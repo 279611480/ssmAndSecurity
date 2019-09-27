@@ -32,4 +32,18 @@ public class SecurityController {
         return "/security/error";
     }
 
+    @RequestMapping("/admin")
+    public String admin(){
+        return "/security/admin";
+    }
+
+    @RequestMapping("/user")
+    public String user(){
+        return "/security/user";
+    }
+
+    @RequestMapping("/index2")
+    public String index2(){
+        return "/security/index2";
+    }
 }
