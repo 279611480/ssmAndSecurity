@@ -13,6 +13,13 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 # 2019_09_14security(01): 整合SpringSecurity现在只到----->配置拦截策略
 
+#  2019_09_17securoty(2)：算是，与数据库成功打交道了
+> 需要注意的是：进行到这一步，那么，自己数据库的用户表里面的密码  一定需要加密形式（你是用什么加密方式保存的，那么自动装换就是了）保存
+
+  如下图，密码，自己转化为了admin  和  user
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927115823801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+
 ## Sql：
 
 ### 结果
