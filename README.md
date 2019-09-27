@@ -20,9 +20,30 @@ SpringBoot整合SSM(全注解   HTML   不使用.xml)  +@Slf4j +SpringSecurity�
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927115823801.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
 
+
+说明：
+自己这里，并没有设置退出的步骤，所以，一开始登录了admin的操作，那么，你会发现无论输入http://localhost:8080/security/admin  还是http://localhost:8080/security/user
+  都是可以访问的  因为自己数据库是分配了权限的
+
+那么，你如果想看user的操作 （这里是 ，不可看admin页面的内容的）   那么，你要么直接关掉该页面     要么，重开浏览器进行（1）使用user账号登录    （2）输入网址http://localhost:8080/security/admin   你会发现报错
+
+# 2019_09_17securoty(2) 结果：
+http://localhost:8080/security/user
+会自动跳到对应的登录页
+
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120223590.png)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120236855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120114969.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120250235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120304143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120311684.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120317440.png)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120324760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+>![在这里插入图片描述](https://img-blog.csdnimg.cn/20190927120331350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lfMjc5NjExNDgw,size_16,color_FFFFFF,t_70)
+
+
+
 ## Sql：
 
-### 结果
+### 2019_09_14security(01): 结果
 运行项目，输入http://localhost:8080/security/login跳转到的页面就是我们刚才写好的页面了，随便输入账号密码点击登录的报错页面也是刚刚添加的error页面。
 
 因为控制层，已经有了方法，会跳转到哪里，至于为什么一直会跳转到error页面，这里还未做  任何  认证以及鉴证的处理。
